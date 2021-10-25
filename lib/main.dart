@@ -1,12 +1,17 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:hackathon_practice/models/authentication_service.dart';
 import 'package:hackathon_practice/screens/home_screen.dart';
 import 'package:hackathon_practice/screens/login_screen.dart';
+import 'package:provider/provider.dart';
 
 import 'screens/home_screen.dart';
 import 'screens/login_screen.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -15,12 +20,24 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+    return MultiProvider(
+      providers: [
+        Provider<AuthenticationService>(
+          create: (_) => AuthenticationService(FirebaseAuth.instance),
+        ),
+        StreamProvider(
+          create: (context) =>
+              context.read<AuthenticationService>().authStateChanges,
+          initialData: null,
+        )
+      ],
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: const AuthenticationWrapper(),
       ),
-      home: const AuthenticationWrapper(),
     );
   }
 }
@@ -36,11 +53,8 @@ class AuthenticationWrapper extends StatefulWidget {
 class _AuthenticationWrapperState extends State<AuthenticationWrapper> {
   @override
   Widget build(BuildContext context) {
-    // placeholder boolean
-    bool isAuthenticated = false;
-    // TODO: implement firebase connection
-    return isAuthenticated
-        ? const HomeScreen("Flutter Demo Home Page")
-        : const LoginScreen();
+    final firebaseUser = context.watch<User?>();
+
+    return firebaseUser != null ? const HomeScreen("Home") : LoginScreen();
   }
 }

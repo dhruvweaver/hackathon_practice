@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../models/authentication_service.dart';
 
 class HomeScreen extends StatefulWidget {
   final String title;
@@ -23,6 +26,12 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
+        leading: IconButton(
+          icon: const Icon(Icons.logout),
+          onPressed: () {
+            context.read<AuthenticationService>().signOut();
+          },
+        ),
       ),
       body: Center(
         child: Column(

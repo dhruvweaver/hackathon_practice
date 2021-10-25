@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../models/authentication_service.dart';
 
 class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+  LoginScreen({Key? key}) : super(key: key);
+
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
 
   @override
   _LoginScreenState createState() => _LoginScreenState();
@@ -12,7 +18,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Log In"),
+        title: const Text("Log In or Sign Up"),
       ),
       body: Center(
         child: Padding(
@@ -22,42 +28,46 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
           child: Column(
             children: [
-              const SizedBox(
-                height: 72,
-              ),
-              const Text("Username"),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 16.0),
                 child: TextField(
+                  controller: widget.emailController,
                   decoration: InputDecoration(
-                      border: const OutlineInputBorder(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(5.0),
-                        ),
+                    border: const OutlineInputBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(5.0),
                       ),
-                      filled: true,
-                      fillColor: Theme.of(context).canvasColor),
+                    ),
+                    filled: true,
+                    fillColor: Theme.of(context).canvasColor,
+                    labelText: "Email",
+                  ),
                 ),
               ),
-              const SizedBox(
-                height: 16,
-              ),
-              const Text("Password"),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 16.0),
                 child: TextField(
+                  controller: widget.passwordController,
                   decoration: InputDecoration(
-                      border: const OutlineInputBorder(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(5.0),
-                        ),
+                    border: const OutlineInputBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(5.0),
                       ),
-                      filled: true,
-                      fillColor: Theme.of(context).canvasColor),
+                    ),
+                    filled: true,
+                    fillColor: Theme.of(context).canvasColor,
+                    labelText: "Password",
+                  ),
+                  obscureText: true,
                 ),
               ),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  context.read<AuthenticationService>().signIn(
+                        email: widget.emailController.text.trim(),
+                        password: widget.passwordController.text.trim(),
+                      );
+                },
                 child: const Text('Submit'),
               ),
             ],
