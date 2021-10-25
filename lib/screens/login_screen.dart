@@ -42,6 +42,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     fillColor: Theme.of(context).canvasColor,
                     labelText: "Email",
                   ),
+                  keyboardType: TextInputType.emailAddress,
                 ),
               ),
               Padding(
@@ -59,6 +60,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     labelText: "Password",
                   ),
                   obscureText: true,
+                  keyboardType: TextInputType.visiblePassword,
                 ),
               ),
               ElevatedButton(
