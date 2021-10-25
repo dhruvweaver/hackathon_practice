@@ -26,36 +26,36 @@ class _LoginScreenState extends State<LoginScreen> {
                 height: 72,
               ),
               const Text("Username"),
-              const Padding(
-                padding: EdgeInsets.symmetric(vertical: 16.0),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 16.0),
                 child: TextField(
                   decoration: InputDecoration(
-                      border: OutlineInputBorder(
+                      border: const OutlineInputBorder(
                         borderRadius: BorderRadius.all(
                           Radius.circular(5.0),
                         ),
                       ),
                       filled: true,
                       // hintText: "Type in your text",
-                      fillColor: Colors.white60),
+                      fillColor: Theme.of(context).canvasColor),
                 ),
               ),
               const SizedBox(
                 height: 16,
               ),
               const Text("Password"),
-              const Padding(
-                padding: EdgeInsets.symmetric(vertical: 16.0),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 16.0),
                 child: TextField(
                   decoration: InputDecoration(
-                      border: OutlineInputBorder(
+                      border: const OutlineInputBorder(
                         borderRadius: BorderRadius.all(
                           Radius.circular(5.0),
                         ),
                       ),
                       filled: true,
                       // hintText: "Type in your text",
-                      fillColor: Colors.white60),
+                      fillColor: Theme.of(context).canvasColor),
                 ),
               ),
               ElevatedButton(
