@@ -25,13 +25,21 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text(
+          widget.title,
+          style: const TextStyle(color: Colors.black),
+        ),
         leading: IconButton(
-          icon: const Icon(Icons.logout),
+          icon: const Icon(
+            Icons.logout,
+            color: Colors.black,
+          ),
           onPressed: () {
             context.read<AuthenticationService>().signOut();
           },
         ),
+        elevation: 0,
+        backgroundColor: Theme.of(context).canvasColor,
       ),
       body: Center(
         child: Column(
@@ -52,6 +60,7 @@ class _HomeScreenState extends State<HomeScreen> {
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }
