@@ -27,12 +27,12 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         title: Text(
           widget.title,
-          style: const TextStyle(color: Colors.black),
+          style: Theme.of(context).textTheme.headline6,
         ),
         leading: IconButton(
-          icon: const Icon(
-            Icons.logout,
-            color: Colors.black,
+          icon: Icon(
+            Icons.logout_rounded,
+            color: Theme.of(context).iconTheme.color,
           ),
           onPressed: () {
             context.read<AuthenticationService>().signOut();

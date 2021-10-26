@@ -18,9 +18,9 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          "Log In or Sign Up",
-          style: TextStyle(color: Colors.black),
+        title: Text(
+          "Log In",
+          style: Theme.of(context).textTheme.headline6,
         ),
         elevation: 0,
         backgroundColor: Theme.of(context).canvasColor,
@@ -38,14 +38,24 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: TextField(
                   controller: widget.emailController,
                   decoration: InputDecoration(
-                    border: const OutlineInputBorder(
-                      borderRadius: BorderRadius.all(
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: const BorderRadius.all(
                         Radius.circular(5.0),
                       ),
+                      borderSide:
+                          BorderSide(color: Theme.of(context).focusColor),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: const BorderRadius.all(
+                        Radius.circular(5.0),
+                      ),
+                      borderSide:
+                          BorderSide(color: Theme.of(context).focusColor),
                     ),
                     filled: true,
                     fillColor: Theme.of(context).canvasColor,
                     labelText: "Email",
+                    labelStyle: TextStyle(color: Theme.of(context).hintColor),
                   ),
                   keyboardType: TextInputType.emailAddress,
                 ),
@@ -55,14 +65,24 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: TextField(
                   controller: widget.passwordController,
                   decoration: InputDecoration(
-                    border: const OutlineInputBorder(
-                      borderRadius: BorderRadius.all(
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: const BorderRadius.all(
                         Radius.circular(5.0),
                       ),
+                      borderSide:
+                          BorderSide(color: Theme.of(context).focusColor),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: const BorderRadius.all(
+                        Radius.circular(5.0),
+                      ),
+                      borderSide:
+                          BorderSide(color: Theme.of(context).focusColor),
                     ),
                     filled: true,
                     fillColor: Theme.of(context).canvasColor,
                     labelText: "Password",
+                    labelStyle: TextStyle(color: Theme.of(context).hintColor),
                   ),
                   obscureText: true,
                   keyboardType: TextInputType.visiblePassword,

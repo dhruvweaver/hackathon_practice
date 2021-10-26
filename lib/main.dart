@@ -35,6 +35,38 @@ class MyApp extends StatelessWidget {
         title: 'Flutter Demo',
         theme: ThemeData(
           primarySwatch: Colors.deepPurple,
+          focusColor: Colors.black,
+          hintColor: Colors.black45,
+          textSelectionTheme:
+              const TextSelectionThemeData(cursorColor: Colors.black),
+          textTheme: const TextTheme(
+            headline6: TextStyle(color: Colors.black),
+          ),
+          iconTheme: const IconThemeData(color: Colors.black),
+        ),
+        darkTheme: ThemeData(
+          primarySwatch: Colors.deepPurple,
+          canvasColor: Colors.black,
+          focusColor: Colors.white,
+          hintColor: Colors.white60,
+          textSelectionTheme:
+              const TextSelectionThemeData(cursorColor: Colors.white),
+          textTheme: const TextTheme(
+            bodyText1: TextStyle(color: Colors.white),
+            bodyText2: TextStyle(color: Colors.white),
+            button: TextStyle(color: Colors.white),
+            caption: TextStyle(color: Colors.white),
+            headline1: TextStyle(color: Colors.white),
+            headline2: TextStyle(color: Colors.white),
+            headline3: TextStyle(color: Colors.white),
+            headline4: TextStyle(color: Colors.white),
+            headline5: TextStyle(color: Colors.white),
+            headline6: TextStyle(color: Colors.white),
+            overline: TextStyle(color: Colors.white),
+            subtitle1: TextStyle(color: Colors.white),
+            subtitle2: TextStyle(color: Colors.white),
+          ),
+          iconTheme: const IconThemeData(color: Colors.white),
         ),
         home: const AuthenticationWrapper(),
       ),
