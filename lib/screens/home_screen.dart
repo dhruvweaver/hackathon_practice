@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../models/authentication_service.dart';
+import '../models/database_counter.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class HomeScreen extends StatefulWidget {
   final String title;
@@ -15,9 +19,17 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int _counter = 0;
 
-  void _incrementCounter() {
+  void _incrementCounter() async {
     setState(() {
       _counter++;
+      //DatabaseCounter().sendData(_counter);
+      var firebaseUser = FirebaseAuth.instance.currentUser;
+      var firebaseData = FirebaseFirestore.instance;
+      CollectionReference counters =
+          FirebaseFirestore.instance.collection('counters');
+      counters.add({
+        'count': "${_counter}",
+      });
     });
   }
 
